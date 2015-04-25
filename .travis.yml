@@ -1,0 +1,19 @@
+language: cpp
+
+env:
+  global:
+    - CMAKE_ARCHIVE_NAME=cmake-3.2.1-Linux-x86_64
+
+install:
+  - sudo apt-get install libboost-all-dev -qq
+  - wget http://www.cmake.org/files/v3.2/${CMAKE_ARCHIVE_NAME}.tar.gz
+  - tar -xzf ${CMAKE_ARCHIVE_NAME}.tar.gz
+  - sudo cp -fRv $CMAKE_ARCHIVE_NAME/* /usr
+  - cmake --version
+  - mkdir build
+
+script:
+  - cd build
+  - cmake ..
+  - make
+  - make test
